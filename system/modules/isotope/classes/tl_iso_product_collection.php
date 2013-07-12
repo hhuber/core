@@ -427,20 +427,13 @@ class tl_iso_product_collection extends \Backend
             \Controller::redirect('contao/main.php?act=error');
         }
 
-        $pdf = null;
-
         foreach ($arrIds as $intId)
         {
             if (($objOrder = Order::findByPk($intId)) !== null)
             {
-                $pdf = $objOrder->generatePDF(null, $pdf, false);
+                // @todo: where do we put this settings?
+                $objTemplate = \Isotope\Factory\InvoiceTemplate::build('xy', $objOrder);
             }
-        }
-
-        if (!$pdf)
-        {
-            \System::log('No order IDs passed to method.', __METHOD__, TL_ERROR);
-            \Controller::redirect('contao/main.php?act=error');
         }
 
         // Close and output PDF document

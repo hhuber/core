@@ -123,8 +123,8 @@ $GLOBALS['TL_DCA']['tl_iso_invoice_templates'] = array
             'exclude'               => true,
             'inputType'             => 'select',
             'default'               => 'standard',
-            'options'               => array_keys($GLOBALS['ISO_INVOICETEMPLATE']),
-            'reference'             => &$GLOBALS['TL_LANG']['INVOICETEMPLATE'],
+            'options'               => array_keys(\Isotope\Factory\InvoiceTemplate::getClasses()),
+            'reference'             => \Isotope\Factory\InvoiceTemplate::getClassLabels(),
             'eval'                  => array('mandatory'=>true, 'submitOnChange'=>true, 'helpwizard'=>true, 'tl_class'=>'w50'),
         )
     )

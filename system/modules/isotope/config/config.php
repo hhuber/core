@@ -129,6 +129,11 @@ $GLOBALS['ISO_MOD'] = array
     ),
     'config' => array
     (
+        'invoice_templates' => array
+        (
+            'tables'                    => array('tl_iso_invoice_templates'),
+            'icon'                        => 'system/modules/isotope/assets/invoice-templates.png'
+        ),
         'iso_mail' => array
         (
             'tables'            => array('tl_iso_mail', 'tl_iso_mail_content'),
@@ -282,6 +287,17 @@ $GLOBALS['ISO_CHECKOUTSTEP'] = array
     'shipping'  => array('\Isotope\CheckoutStep\ShippingMethod'),
     'payment'   => array('\Isotope\CheckoutStep\PaymentMethod'),
     'review'    => array('\Isotope\CheckoutStep\OrderConditionsOnTop', '\Isotope\CheckoutStep\OrderInfo', '\Isotope\CheckoutStep\OrderConditionsBeforeProducts', '\Isotope\CheckoutStep\OrderProducts', '\Isotope\CheckoutStep\OrderConditionsAfterProducts'),
+);
+
+/**
+ * Invoice templates
+ */
+$GLOBALS['ISO_INVOICETEMPLATE'] = array
+(
+    'standard' => array
+    (
+        'class'    => 'Isotope\Invoice\Standard',
+    ),
 );
 
 /**

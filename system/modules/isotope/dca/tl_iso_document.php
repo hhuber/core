@@ -110,8 +110,8 @@ $GLOBALS['TL_DCA']['tl_iso_document'] = array
     'palettes' => array
     (
         '__selector__'              => array('class'),
-        'default'                   => '{name_legend},name,class',
-        'standard'                  => '{name_legend},name,class',
+        'default'                   => '{name_legend},name,type',
+        'standard'                  => '{name_legend},name,type',
     ),
 
     // Fields
@@ -133,16 +133,17 @@ $GLOBALS['TL_DCA']['tl_iso_document'] = array
             'eval'                  => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
-        'class' => array
+        'type' => array
         (
-            'label'                 => &$GLOBALS['TL_LANG']['tl_iso_document']['class'],
+            'label'                 => &$GLOBALS['TL_LANG']['tl_iso_document']['type'],
             'exclude'               => true,
+            'filter'                => true,
             'inputType'             => 'select',
-            'default'               => 'standard',
-            'options'               => array_keys(\Isotope\Factory\Document::getClasses()),
-            'reference'             => \Isotope\Factory\Document::getClassLabels(),
-            'eval'                  => array('mandatory'=>true, 'submitOnChange'=>true, 'helpwizard'=>true, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(32) NOT NULL default 'standard'"
+            'default'               => 'Standard',
+            'options'               => array_keys(\Isotope\Model\Collection\Document::getClasses()),
+            'reference'             => \Isotope\Model\Collection\Document::getClassLabels(),
+            'eval'                  => array('submitOnChange'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
+            'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         // invoiceLogo
     )

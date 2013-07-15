@@ -10,34 +10,39 @@
  * @license    http://opensource.org/licenses/lgpl-3.0.html LGPL
  */
 
-namespace Isotope\Factory;
+namespace Isotope\Model\Collection;
 
-class Document
+
+class Document extends \Model\Collection
 {
 
     /**
-     * Cache of document classes
+     * Cache of payment method classes
      * @var array
      */
     private static $arrClasses;
 
     /**
-     * Build a document based on given data
-     * @param string
-     * @param \Isotope\Interface\IsotopeProductCollection
-     * @return Isotope\Interface\IsotopeDocument
-     * @return Isotope\Model\Config
+     * Fetch the next result row and create the model
+     *
+     * @return boolean True if there was another row
      */
-    public static function build($strClass, $objCollection, $objConfig)
+    protected function fetchNext()
     {
-        // Use Standard class if no other is available
-        if ($strClass == '' || !class_exists('\Isotope\Document\\' . $strClass)) {
-            $strClass = 'Standard';
+        if ($this->objResult->next() == false)
+        {
+            return false;
         }
 
-        $strClass = '\Isotope\Document\\' . $strClass;
+        $strClass = '\Isotope\Model\Document\\' . $this->objResult->type;
 
-        return new $strClass($objCollection, $objConfig);
+        if (!class_exists($strClass)) {
+            throw new \UnexpectedValueException('Class "' . $this->objResult->type . '" for document ID ' . $this->objResult->id . ' not found.');
+        }
+
+        $this->arrModels[$this->intIndex + 1] = new $strClass($this->objResult);
+
+        return true;
     }
 
     /**
@@ -51,12 +56,12 @@ class Document
             static::$arrClasses = array();
             $arrNamespaces = \NamespaceClassLoader::getClassLoader()->getPrefixes();
 
-            if (is_array($arrNamespaces['Isotope/Document'])) {
-                foreach ($arrNamespaces['Isotope/Document'] as $strPath) {
-                    foreach (scan($strPath . '/Isotope/Document') as $strFile) {
+            if (is_array($arrNamespaces['Isotope/Model/Document'])) {
+                foreach ($arrNamespaces['Isotope/Model/Document'] as $strPath) {
+                    foreach (scan($strPath . '/Isotope/Model/Document') as $strFile) {
 
                         $strClass = pathinfo($strFile, PATHINFO_FILENAME);
-                        $strNamespacedClass = '\Isotope\Document\\' . $strClass;
+                        $strNamespacedClass = '\Isotope\Model\Document\\' . $strClass;
 
                         if (is_a($strNamespacedClass, 'Isotope\Interfaces\IsotopeDocument', true)) {
                             static::$arrClasses[$strClass] = $strNamespacedClass;

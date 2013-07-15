@@ -10,7 +10,7 @@
  * @license    http://opensource.org/licenses/lgpl-3.0.html LGPL
  */
 
-namespace Isotope\Document;
+namespace Isotope\Model\Document;
 
 use Isotope\Interfaces\IsotopeDocument;
 use Isotope\Interfaces\IsotopeProductCollection;
@@ -58,6 +58,11 @@ class Standard implements IsotopeDocument
     public function printToBrowser()
     {
 
+        // @todo make things like this configurable in a further version of Isotope
+        $strInvoiceTitle = 'invoice_' . $objOrder->order_id;
+        $pdf->Output(standardize(ampersand($strInvoiceTitle, false), true) . '.pdf', 'D');
+
+        // Stop script execution
     }
 
     /**

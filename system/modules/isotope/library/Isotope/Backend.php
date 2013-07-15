@@ -506,7 +506,7 @@ class Backend extends Contao_Backend
 
         while ($objDocuments->next())
         {
-            $arrDocuments[$objDocuments->id] = $objDocuments->current()->getName();
+            $arrDocuments[$objDocuments->id] = $objDocuments->current()->name;
         }
 
         return $arrDocuments;

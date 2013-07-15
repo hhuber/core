@@ -314,14 +314,9 @@ class tl_iso_product_collection extends \Backend
         }
 
         if (($objOrder = Order::findByPk($dc->id)) !== null) {
-            $objTemplate = \Isotope\Factory\Document::build(null, $objOrder, Config::findByPk($objOrder->config_id));
+            $objDocument = \Isotope\Factory\Document::build(null, $objOrder, Config::findByPk($objOrder->config_id));
+            $objDocument->printToBrowser();
         }
-
-        // @todo make things like this configurable in a further version of Isotope
-        $strInvoiceTitle = 'invoice_' . $objOrder->order_id;
-        $pdf->Output(standardize(ampersand($strInvoiceTitle, false), true) . '.pdf', 'D');
-
-        // Stop script execution
         exit;
     }
 

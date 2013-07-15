@@ -79,27 +79,6 @@ $GLOBALS['TL_DCA']['tl_iso_product_collection'] = array
                 'href'              => 'act=select',
                 'class'             => 'header_edit_all',
                 'attributes'        => 'onclick="Backend.getScrollOffset();"'
-            ),
-            'tools' => array
-            (
-                'label'             => &$GLOBALS['TL_LANG']['tl_iso_product_collection']['tools'],
-                'href'              => '',
-                'class'             => 'header_isotope_tools',
-                'attributes'        => 'onclick="Backend.getScrollOffset();" style="display:none"',
-            ),
-            'export_emails' => array
-            (
-                'label'             => &$GLOBALS['TL_LANG']['tl_iso_product_collection']['export_emails'],
-                'href'              => 'key=export_emails',
-                'class'             => 'header_iso_export_csv isotope-tools',
-                'attributes'        => 'onclick="Backend.getScrollOffset();"'
-            ),
-            'print_invoices' => array
-            (
-                'label'             => &$GLOBALS['TL_LANG']['tl_iso_product_collection']['print_invoices'],
-                'href'              => 'key=print_invoices',
-                'class'             => 'header_print_invoices isotope-tools',
-                'attributes'        => 'onclick="Backend.getScrollOffset();"'
             )
         ),
         'operations' => array

@@ -10,9 +10,9 @@
  * @license    http://opensource.org/licenses/lgpl-3.0.html LGPL
  */
 
-namespace Isotope\Invoice;
+namespace Isotope\Document;
 
-use Isotope\Interfaces\IsotopeInvoiceTemplate;
+use Isotope\Interfaces\IsotopeDocument;
 use Isotope\Interfaces\IsotopeProductCollection;
 
 /**
@@ -25,7 +25,7 @@ use Isotope\Interfaces\IsotopeProductCollection;
  * @author     Christian de la Haye <service@delahaye.de>
  * @author     Yanick Witschi <yanick.witschi@terminal42.ch>
  */
-class Standard implements IsotopeInvoiceTemplate
+class Standard implements IsotopeDocument
 {
     /*
      * Collection
@@ -57,6 +57,6 @@ class Standard implements IsotopeInvoiceTemplate
      */
     public static function getClassLabel()
     {
-        return $GLOBALS['TL_LANG']['INVOICES'][strtolower(str_replace('Isotope\Invoice\\', '', get_called_class()))];
+        return $GLOBALS['TL_LANG']['DOCUMENTS'][strtolower(str_replace('Isotope\Document\\', '', get_called_class()))];
     }
 }

@@ -16,7 +16,7 @@
 /**
  * Table tl_iso_invoice_templates
  */
-$GLOBALS['TL_DCA']['tl_iso_invoice_templates'] = array
+$GLOBALS['TL_DCA']['tl_iso_documents'] = array
 (
     // Config
     'config' => array
@@ -27,6 +27,13 @@ $GLOBALS['TL_DCA']['tl_iso_invoice_templates'] = array
         'onload_callback' => array
         (
             array('Isotope\Backend', 'initializeSetupModule')
+        ),
+        'sql' => array
+        (
+            'keys' => array
+            (
+                'id' => 'primary'
+            )
         )
     ),
 
@@ -56,7 +63,7 @@ $GLOBALS['TL_DCA']['tl_iso_invoice_templates'] = array
             ),
             'new' => array
             (
-                'label'             => &$GLOBALS['TL_LANG']['tl_iso_invoice_templates']['new'],
+                'label'             => &$GLOBALS['TL_LANG']['tl_iso_documents']['new'],
                 'href'              => 'act=create',
                 'class'             => 'header_new',
                 'attributes'        => 'onclick="Backend.getScrollOffset();"',
@@ -73,26 +80,26 @@ $GLOBALS['TL_DCA']['tl_iso_invoice_templates'] = array
         (
             'edit' => array
             (
-                'label'             => &$GLOBALS['TL_LANG']['tl_iso_invoice_templates']['edit'],
+                'label'             => &$GLOBALS['TL_LANG']['tl_iso_documents']['edit'],
                 'href'              => 'act=edit',
                 'icon'              => 'edit.gif',
             ),
             'copy' => array
             (
-                'label'             => &$GLOBALS['TL_LANG']['tl_iso_invoice_templates']['copy'],
+                'label'             => &$GLOBALS['TL_LANG']['tl_iso_documents']['copy'],
                 'href'              => 'act=copy',
                 'icon'              => 'copy.gif'
             ),
             'delete' => array
             (
-                'label'             => &$GLOBALS['TL_LANG']['tl_iso_producttypes']['delete'],
+                'label'             => &$GLOBALS['TL_LANG']['tl_iso_documents']['delete'],
                 'href'              => 'act=delete',
                 'icon'              => 'delete.gif',
                 'attributes'        => 'onclick="if (!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\')) return false; Backend.getScrollOffset();"'
             ),
             'show' => array
             (
-                'label'             => &$GLOBALS['TL_LANG']['tl_iso_producttypes']['show'],
+                'label'             => &$GLOBALS['TL_LANG']['tl_iso_documents']['show'],
                 'href'              => 'act=show',
                 'icon'              => 'show.gif'
             )
@@ -110,22 +117,32 @@ $GLOBALS['TL_DCA']['tl_iso_invoice_templates'] = array
     // Fields
     'fields' => array
     (
+        'id' => array
+        (
+            'sql'                     => "int(10) unsigned NOT NULL auto_increment"
+        ),
+        'tstamp' => array
+        (
+            'sql'                     => "int(10) unsigned NOT NULL default '0'"
+        ),
         'name' => array
         (
-            'label'                 => &$GLOBALS['TL_LANG']['tl_iso_producttypes']['name'],
+            'label'                 => &$GLOBALS['TL_LANG']['tl_iso_documents']['name'],
             'exclude'               => true,
             'inputType'             => 'text',
-            'eval'                  => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50')
+            'eval'                  => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
+            'sql'                     => "'name' varchar(255) NOT NULL default ''"
         ),
         'class' => array
         (
-            'label'                 => &$GLOBALS['TL_LANG']['tl_iso_producttypes']['class'],
+            'label'                 => &$GLOBALS['TL_LANG']['tl_iso_documents']['class'],
             'exclude'               => true,
             'inputType'             => 'select',
             'default'               => 'standard',
-            'options'               => array_keys(\Isotope\Factory\InvoiceTemplate::getClasses()),
-            'reference'             => \Isotope\Factory\InvoiceTemplate::getClassLabels(),
+            'options'               => array_keys(\Isotope\Factory\Document::getClasses()),
+            'reference'             => \Isotope\Factory\Document::getClassLabels(),
             'eval'                  => array('mandatory'=>true, 'submitOnChange'=>true, 'helpwizard'=>true, 'tl_class'=>'w50'),
+            'sql'                   => "'class' varchar(32) NOT NULL default 'standard"
         )
     )
 );

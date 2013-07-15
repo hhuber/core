@@ -606,19 +606,6 @@ CREATE TABLE `tl_iso_productcache` (
   KEY `page_id` (`page_id`, `module_id`, `requestcache_id`, `keywords`, `expires`),
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table `tl_iso_invoice_templates`
---
-
-CREATE TABLE `tl_iso_invoice_templates` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `tstamp` int(10) unsigned NOT NULL default '0',
-  `name` varchar(255) NOT NULL default '',
-  `class` varchar(32) NOT NULL default 'standard',
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 

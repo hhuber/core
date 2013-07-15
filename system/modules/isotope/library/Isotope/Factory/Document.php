@@ -12,34 +12,34 @@
 
 namespace Isotope\Factory;
 
-class InvoiceTemplate
+class Document
 {
 
     /**
-     * Cache of gallery classes
+     * Cache of document classes
      * @var array
      */
     private static $arrClasses;
 
     /**
-     * Build an invoice template based on given data
+     * Build a document based on given data
      * @param string
      * @param \Isotope\Interface\IsotopeProductCollection
-     * @return Isotope\Interface\IsotopeInvoiceTemplate
+     * @return Isotope\Interface\IsotopeDocument
      */
     public static function build($strClass, $objCollection)
     {
         // Try config class if none is given
-        if ($strClass == '' || !class_exists('\Isotope\Invoice\\' . $strClass)) {
+        if ($strClass == '' || !class_exists('\Isotope\Document\\' . $strClass)) {
             //$strClass = Isotope::getInstance()->getConfig()->gallery;
         }
 
         // Use Standard class if no other is available
-        if ($strClass == '' || !class_exists('\Isotope\Invoice\\' . $strClass)) {
+        if ($strClass == '' || !class_exists('\Isotope\Document\\' . $strClass)) {
             $strClass = 'Standard';
         }
 
-        $strClass = '\Isotope\Invoice\\' . $strClass;
+        $strClass = '\Isotope\Document\\' . $strClass;
 
         return new $strClass($objCollection);
     }
@@ -55,14 +55,14 @@ class InvoiceTemplate
             static::$arrClasses = array();
             $arrNamespaces = \NamespaceClassLoader::getClassLoader()->getPrefixes();
 
-            if (is_array($arrNamespaces['Isotope/Invoice'])) {
-                foreach ($arrNamespaces['Isotope/Invoice'] as $strPath) {
-                    foreach (scan($strPath . '/Isotope/Invoice') as $strFile) {
+            if (is_array($arrNamespaces['Isotope/Document'])) {
+                foreach ($arrNamespaces['Isotope/Document'] as $strPath) {
+                    foreach (scan($strPath . '/Isotope/Document') as $strFile) {
 
                         $strClass = pathinfo($strFile, PATHINFO_FILENAME);
-                        $strNamespacedClass = '\Isotope\Invoice\\' . $strClass;
+                        $strNamespacedClass = '\Isotope\Document\\' . $strClass;
 
-                        if (is_a($strNamespacedClass, 'Isotope\Interfaces\IsotopeInvoiceTemplate', true)) {
+                        if (is_a($strNamespacedClass, 'Isotope\Interfaces\IsotopeDocument', true)) {
                             static::$arrClasses[$strClass] = $strNamespacedClass;
                         }
                     }
@@ -74,7 +74,7 @@ class InvoiceTemplate
     }
 
     /**
-     * Return labels for all invoice templates
+     * Return labels for all documents
      * @return array
      */
     public static function getClassLabels()

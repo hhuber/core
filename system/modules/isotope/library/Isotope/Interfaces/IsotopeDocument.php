@@ -11,6 +11,7 @@
  */
 
 namespace Isotope\Interfaces;
+use Isotope\Model\Config;
 
 
 /**
@@ -18,6 +19,15 @@ namespace Isotope\Interfaces;
  */
 interface IsotopeDocument
 {
+    /**
+     * Set the collection
+     */
+    public function setCollection(IsotopeProductCollection $collection);
+
+    /**
+     * Set the config
+     */
+    public function setConfig(Config $config);
 
     /**
      * Generate the document and send it to browser
@@ -28,10 +38,4 @@ interface IsotopeDocument
      * Generate the document and store it to a given path
      */
     public function store($path);
-
-    /**
-     * Return the name and description for this document
-     * @return array
-     */
-    public static function getClassLabel();
 }

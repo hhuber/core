@@ -141,7 +141,7 @@ $GLOBALS['TL_DCA']['tl_iso_document'] = array
             'inputType'             => 'select',
             'default'               => 'Standard',
             'options'               => array_keys(\Isotope\Model\Collection\Document::getClasses()),
-            'reference'             => \Isotope\Model\Collection\Document::getClassLabels(),
+            //'reference'             => \Isotope\Model\Collection\Document::getClassLabels(),
             'eval'                  => array('submitOnChange'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),

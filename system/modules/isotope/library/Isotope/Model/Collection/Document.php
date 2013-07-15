@@ -73,19 +73,4 @@ class Document extends \Model\Collection
 
         return static::$arrClasses;
     }
-
-    /**
-     * Return labels for all documents
-     * @return array
-     */
-    public static function getClassLabels()
-    {
-        $arrLabels = array();
-
-        foreach (static::getCLasses() as $strClass => $strNamespacedClass) {
-            $arrLabels[$strClass] = call_user_func(array($strNamespacedClass, 'getClassLabel'));
-        }
-
-        return $arrLabels;
-    }
 }

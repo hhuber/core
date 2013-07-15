@@ -314,8 +314,11 @@ class tl_iso_product_collection extends \Backend
         }
 
         if (($objOrder = Order::findByPk($dc->id)) !== null) {
-            $objDocument = \Isotope\Factory\Document::build(null, $objOrder, Config::findByPk($objOrder->config_id));
-            $objDocument->printToBrowser();
+            if (($objConfig = Config::findByPk($objOrder->config_id)) !== null) {
+                if (($objDocument = $objConfig->getRelated('invoiceDocument')) !== null) {
+                    $objDocument->setCollection($objOrder)->setConfig($objConfig)->printToBrowser();
+                }
+            }
         }
         exit;
     }

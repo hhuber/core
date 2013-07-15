@@ -42,14 +42,27 @@ class Standard implements IsotopeDocument
 
 
     /**
-     * Construct the object
-     * @param string
-     * @param array
+     * Set the collection
+     * @param IsotopeProductCollection
+     * @return Standard
      */
-    public function __construct(IsotopeProductCollection $collection, Config $config)
+    public function setCollection(IsotopeProductCollection $collection)
     {
         $this->collection = $collection;
+
+        return $this;
+    }
+
+    /**
+     * Set the store config
+     * @param Config
+     * @return Standard
+     */
+    public function setConfig(Config $config)
+    {
         $this->config = $config;
+
+        return $this;
     }
 
     /**
@@ -57,12 +70,11 @@ class Standard implements IsotopeDocument
      */
     public function printToBrowser()
     {
-
-        // @todo make things like this configurable in a further version of Isotope
+/*
         $strInvoiceTitle = 'invoice_' . $objOrder->order_id;
         $pdf->Output(standardize(ampersand($strInvoiceTitle, false), true) . '.pdf', 'D');
-
-        // Stop script execution
+*/
+        exit;
     }
 
     /**
@@ -71,13 +83,5 @@ class Standard implements IsotopeDocument
     public function store($path)
     {
 
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getClassLabel()
-    {
-        return $GLOBALS['TL_LANG']['DOCUMENTS'][strtolower(str_replace('Isotope\Document\\', '', get_called_class()))];
     }
 }

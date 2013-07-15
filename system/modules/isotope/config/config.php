@@ -274,6 +274,7 @@ $GLOBALS['TL_MODELS']['tl_iso_producttypes']                    = 'Isotope\Model
 $GLOBALS['TL_MODELS']['tl_iso_tax_class']                       = 'Isotope\Model\TaxClass';
 $GLOBALS['TL_MODELS']['tl_iso_tax_rate']                        = 'Isotope\Model\TaxRate';
 $GLOBALS['TL_MODELS']['tl_iso_payment_modules']                 = 'Isotope\Model\Payment';
+$GLOBALS['TL_MODELS']['tl_iso_document']                        = 'Isotope\Model\Document';
 $GLOBALS['TL_MODELS']['tl_iso_shipping_modules']                = 'Isotope\Model\Shipping';
 
 /**

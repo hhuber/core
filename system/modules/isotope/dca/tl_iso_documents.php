@@ -131,7 +131,7 @@ $GLOBALS['TL_DCA']['tl_iso_documents'] = array
             'exclude'               => true,
             'inputType'             => 'text',
             'eval'                  => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
-            'sql'                     => "'name' varchar(255) NOT NULL default ''"
+            'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'class' => array
         (
@@ -142,7 +142,7 @@ $GLOBALS['TL_DCA']['tl_iso_documents'] = array
             'options'               => array_keys(\Isotope\Factory\Document::getClasses()),
             'reference'             => \Isotope\Factory\Document::getClassLabels(),
             'eval'                  => array('mandatory'=>true, 'submitOnChange'=>true, 'helpwizard'=>true, 'tl_class'=>'w50'),
-            'sql'                   => "'class' varchar(32) NOT NULL default 'standard"
+            'sql'                   => "varchar(32) NOT NULL default 'standard'"
         )
     )
 );

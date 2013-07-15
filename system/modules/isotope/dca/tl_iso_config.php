@@ -35,13 +35,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
         (
             array('Isotope\Backend', 'truncateProductCache'),
         ),
-        'sql' => array
-        (
-            'keys' => array
-            (
-                'id' => 'primary',
-            )
-        ),
     ),
 
     // List
@@ -125,8 +118,10 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             {checkout_legend},billing_countries,shipping_countries,billing_fields,shipping_fields,billing_country,shipping_country,limitMemberCountries;
             {currency_legend},priceRoundPrecision,priceRoundIncrement,currency,currencyFormat,currencyPosition,currencySymbol;
             {converter_legend:hide},priceCalculateFactor,priceCalculateMode,currencyAutomator;
-            {order_legend:hide},orderPrefix,orderDigits,orderstatus_new,orderstatus_error,invoiceLogo;
+            {order_legend:hide},orderPrefix,orderDigits,orderstatus_new,orderstatus_error;
+            {documents_legend},invoiceDocument;
             {config_legend},templateGroup,cartMinSubtotal;
+            {images_legend},gallery,missing_image_placeholder,imageSizes;
             {products_legend},newProductPeriod',
     ),
 
@@ -140,21 +135,12 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
     // Fields
     'fields' => array
     (
-        'id' => array
-        (
-            'sql'                 =>  "int(10) unsigned NOT NULL auto_increment",
-        ),
-        'tstamp' => array
-        (
-            'sql'                 =>  "int(10) unsigned NOT NULL default '0'",
-        ),
         'name' => array
         (
             'label'                 => &$GLOBALS['TL_LANG']['tl_iso_config']['name'],
             'exclude'               => true,
             'inputType'             => 'text',
             'eval'                  => array('mandatory'=>true, 'unique'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(255) NOT NULL default ''",
         ),
         'label' => array
         (
@@ -162,7 +148,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'exclude'               => true,
             'inputType'             => 'text',
             'eval'                  => array('maxlength'=>255, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(255) NOT NULL default ''",
         ),
         'fallback' => array
         (
@@ -170,7 +155,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'exclude'               => true,
             'inputType'             => 'checkbox',
             'eval'                  => array('doNotCopy'=>true, 'fallback'=>true, 'tl_class'=>'w50 m12'),
-            'sql'                   => "char(1) NOT NULL default ''",
         ),
         'store_id' => array
         (
@@ -178,7 +162,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'exclude'               => true,
             'inputType'             => 'text',
             'eval'                  => array('mandatory'=>true, 'rgxp'=>'digit', 'nospace'=>true, 'maxlength'=>2, 'tl_class'=>'w50'),
-            'sql'                   => "int(2) unsigned NOT NULL default '0'",
         ),
         'firstname' => array
         (
@@ -189,7 +172,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'flag'                  => 1,
             'inputType'             => 'text',
             'eval'                  => array('maxlength'=>255, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(255) NOT NULL default ''",
         ),
         'lastname' => array
         (
@@ -200,7 +182,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'flag'                  => 1,
             'inputType'             => 'text',
             'eval'                  => array('maxlength'=>255, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(255) NOT NULL default ''",
         ),
         'company' => array
         (
@@ -211,7 +192,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'flag'                  => 1,
             'inputType'             => 'text',
             'eval'                  => array('maxlength'=>255, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(255) NOT NULL default ''",
         ),
         'vat_no' => array
         (
@@ -220,7 +200,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'search'                => true,
             'inputType'             => 'text',
             'eval'                  => array('maxlength'=>255, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(255) NOT NULL default ''",
         ),
         'street_1' => array
         (
@@ -229,7 +208,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'search'                => true,
             'inputType'             => 'text',
             'eval'                  => array('maxlength'=>255, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(255) NOT NULL default ''",
         ),
         'street_2' => array
         (
@@ -238,7 +216,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'search'                => true,
             'inputType'             => 'text',
             'eval'                  => array('maxlength'=>255, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(255) NOT NULL default ''",
         ),
         'street_3' => array
         (
@@ -247,7 +224,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'search'                => true,
             'inputType'             => 'text',
             'eval'                  => array('maxlength'=>255, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(255) NOT NULL default ''",
         ),
         'postal' => array
         (
@@ -256,7 +232,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'search'                => true,
             'inputType'             => 'text',
             'eval'                  => array('maxlength'=>32, 'tl_class'=>'clr w50'),
-            'sql'                   => "varchar(32) NOT NULL default ''",
         ),
         'city' => array
         (
@@ -267,7 +242,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'sorting'               => true,
             'inputType'             => 'text',
             'eval'                  => array('maxlength'=>255, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(255) NOT NULL default ''",
         ),
         'subdivision' => array
         (
@@ -277,7 +251,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'inputType'             => 'conditionalselect',
             'options_callback'      => array('Isotope\Backend', 'getSubdivisions'),
             'eval'                  => array('conditionField'=>'country', 'includeBlankOption'=>true, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(10) NOT NULL default ''",
         ),
         'country' => array
         (
@@ -289,7 +262,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'default'               => $this->User->country,
             'options'               => $this->getCountries(),
             'eval'                  => array('mandatory'=>true, 'includeBlankOption'=>true, 'tl_class'=>'w50', 'chosen'=>true),
-            'sql'                   => "varchar(2) NOT NULL default ''",
         ),
         'phone' => array
         (
@@ -298,7 +270,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'search'                => true,
             'inputType'             => 'text',
             'eval'                  => array('maxlength'=>64, 'rgxp'=>'phone', 'tl_class'=>'w50'),
-            'sql'                   => "varchar(64) NOT NULL default ''",
         ),
         'email' => array
         (
@@ -306,8 +277,7 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'exclude'               => true,
             'search'                => true,
             'inputType'             => 'text',
-            'eval'                  => array('maxlength'=>64, 'rgxp'=>'email', 'tl_class'=>'w50'),
-            'sql'                   => "varchar(255) NOT NULL default ''",
+            'eval'                  => array('maxlength'=>64, 'rgxp'=>'email', 'tl_class'=>'w50')
         ),
         'shipping_countries' => array
         (
@@ -315,8 +285,7 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'exclude'               => true,
             'inputType'             => 'select',
             'options'               => $this->getCountries(),
-            'eval'                  => array('multiple'=>true, 'size'=>8, 'tl_class'=>'w50 w50h', 'chosen'=>true),
-            'sql'                   => "blob NULL",
+            'eval'                  => array('multiple'=>true, 'size'=>8, 'tl_class'=>'w50 w50h', 'chosen'=>true)
         ),
         'shipping_fields' => array
         (
@@ -324,8 +293,7 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'exclude'               => true,
             'inputType'             => 'fieldWizard',
             'eval'                  => array('multiple'=>true, 'tl_class'=>'w50 w50h', 'table'=>'tl_iso_addresses', 'helpwizard'=>true),
-            'explanation'           => 'isoFieldWizard',
-            'sql'                   => "blob NULL",
+            'explanation'           => 'isoFieldWizard'
         ),
         'shipping_country' => array
         (
@@ -333,8 +301,7 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'exclude'               => true,
             'inputType'             => 'select',
             'options'               => $this->getCountries(),
-            'eval'                  => array('includeBlankOption'=>true, 'tl_class'=>'w50', 'chosen'=>true),
-            'sql'                   => "varchar(2) NOT NULL default ''",
+            'eval'                  => array('includeBlankOption'=>true, 'tl_class'=>'w50', 'chosen'=>true)
         ),
         'billing_countries' => array
         (
@@ -342,8 +309,7 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'exclude'               => true,
             'inputType'             => 'select',
             'options'               => $this->getCountries(),
-            'eval'                  => array('multiple'=>true, 'size'=>8, 'tl_class'=>'w50 w50h', 'chosen'=>true),
-            'sql'                   => "blob NULL"
+            'eval'                  => array('multiple'=>true, 'size'=>8, 'tl_class'=>'w50 w50h', 'chosen'=>true)
         ),
         'billing_fields' => array
         (
@@ -351,8 +317,7 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'exclude'               => true,
             'inputType'             => 'fieldWizard',
             'eval'                  => array('mandatory'=>true, 'multiple'=>true, 'table'=>'tl_iso_addresses', 'tl_class'=>'clr w50 w50h', 'helpwizard'=>true),
-            'explanation'           => 'isoFieldWizard',
-            'sql'                   => "blob NULL",
+            'explanation'           => 'isoFieldWizard'
         ),
         'billing_country' => array
         (
@@ -360,8 +325,7 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'exclude'               => true,
             'inputType'             => 'select',
             'options'               => $this->getCountries(),
-            'eval'                  => array('includeBlankOption'=>true, 'tl_class'=>'w50', 'chosen'=>true),
-            'sql'                   => "varchar(2) NOT NULL default ''",
+            'eval'                  => array('includeBlankOption'=>true, 'tl_class'=>'w50', 'chosen'=>true)
         ),
         'limitMemberCountries' => array
         (
@@ -369,7 +333,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'exclude'               => true,
             'inputType'             => 'checkbox',
             'eval'                  => array('tl_class'=>'w50'),
-            'sql'                   => "char(1) NOT NULL default ''",
         ),
         'priceRoundPrecision' => array
         (
@@ -378,7 +341,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'default'               => '2',
             'inputType'             => 'text',
             'eval'                  => array('mandatory'=>true, 'maxlength'=>1, 'rgpx'=>'digit', 'tl_class'=>'w50'),
-            'sql'                   => "int(1) unsigned NOT NULL default '2'",
         ),
         'priceRoundIncrement' => array
         (
@@ -387,7 +349,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'inputType'             => 'select',
             'options'               => array('0.01', '0.05'),
             'eval'                  => array('mandatory'=>true, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(4) NOT NULL default ''",
         ),
         'cartMinSubtotal' => array
         (
@@ -396,7 +357,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'default'               => '',
             'inputType'             => 'text',
             'eval'                  => array('mandatory'=>true, 'maxlength'=>13, 'rgpx'=>'price', 'tl_class'=>'w50'),
-            'sql'                   => "decimal(12,2) NOT NULL default '0.00'",
         ),
         'currency' => array
         (
@@ -405,7 +365,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'inputType'             => 'select',
             'options'               => &$GLOBALS['TL_LANG']['CUR'],
             'eval'                  => array('includeBlankOption'=>true, 'mandatory'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(3) NOT NULL default ''",
         ),
         'currencySymbol' => array
         (
@@ -413,7 +372,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'exclude'               => true,
             'inputType'             => 'checkbox',
             'eval'                  => array('submitOnChange'=>true, 'tl_class'=>'w50'),
-            'sql'                   => "char(1) NOT NULL default ''",
         ),
         'currencySpace' => array
         (
@@ -421,7 +379,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'exclude'               => true,
             'inputType'             => 'checkbox',
             'eval'                  => array('tl_class'=>'w50'),
-            'sql'                   => "char(1) NOT NULL default ''",
         ),
         'currencyPosition' => array
         (
@@ -432,7 +389,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'options'               => array('left', 'right'),
             'reference'             => &$GLOBALS['TL_LANG']['tl_iso_config'],
             'eval'                  => array('tl_class'=>'w50'),
-            'sql'                   => "varchar(5) NOT NULL default ''",
         ),
         'currencyFormat' => array
         (
@@ -441,7 +397,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'inputType'             => 'select',
             'options'               => array_keys($GLOBALS['ISO_NUM']),
             'eval'                  => array('includeBlankOption'=>true, 'mandatory'=>true, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(20) NOT NULL default ''",
         ),
         'priceCalculateFactor' => array
         (
@@ -450,7 +405,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'default'               => 1,
             'inputType'             => 'text',
             'eval'                  => array('mandatory'=>true, 'maxlength'=>10, 'rgxp'=>'digit', 'tl_class'=>'w50'),
-            'sql'                   => "varchar(10) NOT NULL default ''",
         ),
         'priceCalculateMode' => array
         (
@@ -461,7 +415,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'options'               => array('mul', 'div'),
             'reference'             => &$GLOBALS['TL_LANG']['tl_iso_config'],
             'eval'                  => array('mandatory'=>true, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(3) NOT NULL default ''",
         ),
         'currencyAutomator' => array
         (
@@ -469,7 +422,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'exclude'               => true,
             'inputType'             => 'checkbox',
             'eval'                  => array('submitOnChange'=>true, 'tl_class'=>'clr', 'helpwizard'=>true),
-            'sql'                   => "char(1) NOT NULL default ''",
         ),
         'currencyOrigin' => array
         (
@@ -478,7 +430,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'inputType'             => 'select',
             'options'               => &$GLOBALS['TL_LANG']['CUR'],
             'eval'                  => array('includeBlankOption'=>true, 'mandatory'=>true, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(3) NOT NULL default ''",
         ),
         'currencyProvider' => array
         (
@@ -488,7 +439,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'options'               => array('ecb.int', 'admin.ch'),
             'reference'             => &$GLOBALS['TL_LANG']['tl_iso_config'],
             'eval'                  => array('mandatory'=>true, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(32) NOT NULL default ''",
         ),
         'orderPrefix' => array
         (
@@ -496,7 +446,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'exclude'               => true,
             'inputType'             => 'text',
             'eval'                  => array('maxlength'=>255, 'decodeEntities'=>true, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(255) NOT NULL default ''",
         ),
         'orderDigits' => array
         (
@@ -506,7 +455,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'inputType'             => 'select',
             'options'               => range(1, 9),
             'eval'                  => array('tl_class'=>'w50'),
-            'sql'                   => "int(1) unsigned NOT NULL default '4'",
         ),
         'invoiceLogo' => array
         (
@@ -514,7 +462,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'exclude'               => true,
             'inputType'             => 'fileTree',
             'eval'                  => array('fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>'jpg,jpeg,gif,png,tif,tiff', 'tl_class'=>'clr'),
-            'sql'                   => "varchar(255) NOT NULL default ''",
         ),
         'orderstatus_new' => array
         (
@@ -525,7 +472,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'foreignKey'            => 'tl_iso_orderstatus.name',
             'options_callback'      => array('\Isotope\Backend', 'getOrderStatus'),
             'eval'                  => array('mandatory'=>true, 'includeBlankOption'=>true, 'tl_class'=>'w50'),
-            'sql'                   => "int(10) unsigned NOT NULL default '0'",
             'relation'              => array('type'=>'hasOne', 'load'=>'lazy'),
         ),
         'orderstatus_error' => array
@@ -537,17 +483,106 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'foreignKey'            => 'tl_iso_orderstatus.name',
             'options_callback'      => array('\Isotope\Backend', 'getOrderStatus'),
             'eval'                  => array('mandatory'=>true, 'includeBlankOption'=>true, 'tl_class'=>'w50'),
-            'sql'                   => "int(10) unsigned NOT NULL default '0'",
+            'relation'              => array('type'=>'hasOne', 'load'=>'lazy'),
+        ),
+        'invoiceDocument' => array
+        (
+            'label'                 => &$GLOBALS['TL_LANG']['tl_iso_config']['invoiceDocument'],
+            'exclude'               => true,
+            'filter'                => true,
+            'inputType'             => 'select',
+            'options'               => array_keys(\Isotope\Factory\Document::getClasses()),
+            'reference'             => \Isotope\Factory\Document::getClassLabels(),
+            'eval'                  => array('mandatory'=>true, 'includeBlankOption'=>true, 'tl_class'=>'w50'),
             'relation'              => array('type'=>'hasOne', 'load'=>'lazy'),
         ),
         'templateGroup' => array
         (
             'label'                 => &$GLOBALS['TL_LANG']['tl_iso_config']['templateGroup'],
             'exclude'               => true,
-			'inputType'             => 'select',
-			'options_callback'      => array('Isotope\tl_iso_config', 'getTemplateFolders'),
-			'eval'                  => array('includeBlankOption'=>true, 'tl_class'=>'w50'),
-            'sql'                   => "varchar(255) NOT NULL default ''",
+            'inputType'             => 'select',
+            'options_callback'      => array('Isotope\tl_iso_config', 'getTemplateFolders'),
+            'eval'                  => array('includeBlankOption'=>true, 'tl_class'=>'w50'),
+        ),
+        'gallery' => array
+        (
+            'label'                 => &$GLOBALS['TL_LANG']['tl_iso_config']['gallery'],
+            'exclude'               => true,
+            'inputType'             => 'select',
+            'default'               => 'default',
+            'options'               => array_keys(\Isotope\Factory\Gallery::getClasses()),
+            'reference'             => \Isotope\Factory\Gallery::getClassLabels(),
+            'eval'                  => array('mandatory'=>true, 'tl_class'=>'clr', 'helpwizard'=>true),
+        ),
+        'missing_image_placeholder' => array
+        (
+            'label'                 => &$GLOBALS['TL_LANG']['tl_iso_config']['missing_image_placeholder'],
+            'exclude'               => true,
+            'inputType'             => 'fileTree',
+            'eval'                  => array('fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions' => 'jpg,jpeg,gif,png,tif,tiff', 'tl_class'=>'clr'),
+        ),
+        'imageSizes' => array
+        (
+            'label'                 => &$GLOBALS['TL_LANG']['tl_iso_config']['imageSizes'],
+            'exclude'               => true,
+            'inputType'             => 'multiColumnWizard',
+            'default' => array
+            (
+                array('name'        => 'gallery'),
+                array('name'        => 'thumbnail'),
+                array('name'        => 'medium'),
+                array('name'        => 'large'),
+            ),
+            'eval' => array
+            (
+                'mandatory'         => true,
+                'tl_class'          => 'clr',
+                'disableSorting'    => true,
+                'columnFields' => array
+                (
+                    'name' => array
+                    (
+                        'label'     => $GLOBALS['TL_LANG']['tl_iso_config']['iwName'],
+                        'inputType' => 'text',
+                        'eval'      => array('mandatory'=>true, 'rgxp'=>'alpha', 'spaceToUnderscore'=>true, 'class'=>'tl_text_4'),
+                    ),
+                    'width' => array
+                    (
+                        'label'     => $GLOBALS['TL_LANG']['tl_iso_config']['iwWidth'],
+                        'inputType' => 'text',
+                        'eval'      => array('rgxp'=>'digit', 'class'=>'tl_text_4'),
+                    ),
+                    'height' => array
+                    (
+                        'label'     => $GLOBALS['TL_LANG']['tl_iso_config']['iwHeight'],
+                        'inputType' => 'text',
+                        'eval'      => array('rgxp'=>'digit', 'class'=>'tl_text_4'),
+                    ),
+                    'mode' => array
+                    (
+                        'label'     => $GLOBALS['TL_LANG']['tl_iso_config']['iwMode'],
+                        'inputType' => 'select',
+                        'options'   => $GLOBALS['TL_CROP'],
+                        'reference' => &$GLOBALS['TL_LANG']['MSC'],
+                        'eval'      => array('style'=>'width:150px'),
+                    ),
+                    'watermark' => array
+                    (
+                        'label'     => $GLOBALS['TL_LANG']['tl_iso_config']['iwWatermark'],
+                        'inputType' => 'text',
+                        'eval'      => array('class'=>'tl_text_2'),
+//                        'wizard'  => array(array('tl_iso_config', 'filePicker')),
+                    ),
+                    'position' => array
+                    (
+                        'label'     => $GLOBALS['TL_LANG']['tl_iso_config']['iwPosition'],
+                        'inputType' => 'select',
+                        'options'   => array('tl', 'tc', 'tr', 'bl', 'bc', 'br', 'cc'),
+                        'reference' => array('tl'=>&$GLOBALS['TL_LANG']['MSC']['left_top'], 'tc'=>&$GLOBALS['TL_LANG']['MSC']['center_top'], 'tr'=>&$GLOBALS['TL_LANG']['MSC']['right_top'], 'bl'=>&$GLOBALS['TL_LANG']['MSC']['left_bottom'], 'bc'=>&$GLOBALS['TL_LANG']['MSC']['center_bottom'], 'br'=>&$GLOBALS['TL_LANG']['MSC']['right_bottom'], 'cc'=>&$GLOBALS['TL_LANG']['MSC']['center_center']),
+                        'eval'      => array('style'=>'width:60px'),
+                    ),
+                ),
+            ),
         ),
         'newProductPeriod' => array
         (
@@ -559,6 +594,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'reference'                 => &$GLOBALS['TL_LANG']['MSC']['timePeriod'],
             'eval'                      => array('rgxp'=>'digit', 'maxlength'=>5, 'tl_class'=>'w50'),
             'sql'                       => "varchar(255) NOT NULL default ''"
-        ),
+        )
     )
 );

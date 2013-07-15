@@ -143,6 +143,7 @@ $GLOBALS['TL_DCA']['tl_iso_documents'] = array
             'reference'             => \Isotope\Factory\Document::getClassLabels(),
             'eval'                  => array('mandatory'=>true, 'submitOnChange'=>true, 'helpwizard'=>true, 'tl_class'=>'w50'),
             'sql'                   => "varchar(32) NOT NULL default 'standard'"
-        )
+        ),
+        // invoiceLogo
     )
 );

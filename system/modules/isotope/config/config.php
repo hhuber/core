@@ -131,7 +131,7 @@ $GLOBALS['ISO_MOD'] = array
     (
         'documents' => array
         (
-            'tables'                    => array('tl_iso_documents'),
+            'tables'                    => array('tl_iso_document'),
             'icon'                        => 'system/modules/isotope/assets/invoice_64x64.png'
         ),
         'iso_mail' => array

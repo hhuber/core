@@ -495,6 +495,25 @@ class Backend extends Contao_Backend
 
 
     /**
+     * Get documents and return them as array
+     * @param object
+     * @return array
+     */
+    public static function getDocuments()
+    {
+        $arrDocuments = array();
+        $objDocuments = Document::findAll();
+
+        while ($objDocuments->next())
+        {
+            $arrDocuments[$objDocuments->id] = $objDocuments->current()->getName();
+        }
+
+        return $arrDocuments;
+    }
+
+
+    /**
      * Add the product attributes to the db updater array so the users don't delete them while updating
      * @param array
      * @return array

@@ -491,10 +491,11 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'exclude'               => true,
             'filter'                => true,
             'inputType'             => 'select',
-            'options'               => array_keys(\Isotope\Factory\Document::getClasses()),
+            'foreignKey'            => 'tl_iso_document.name',
             'reference'             => \Isotope\Factory\Document::getClassLabels(),
             'eval'                  => array('mandatory'=>true, 'includeBlankOption'=>true, 'tl_class'=>'w50'),
             'relation'              => array('type'=>'hasOne', 'load'=>'lazy'),
+            'sql'                   => "int(10) NOT NULL default '0'"
         ),
         'templateGroup' => array
         (

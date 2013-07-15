@@ -14,9 +14,9 @@
 
 
 /**
- * Table tl_iso_invoice_templates
+ * Table tl_iso_document
  */
-$GLOBALS['TL_DCA']['tl_iso_documents'] = array
+$GLOBALS['TL_DCA']['tl_iso_document'] = array
 (
     // Config
     'config' => array
@@ -63,7 +63,7 @@ $GLOBALS['TL_DCA']['tl_iso_documents'] = array
             ),
             'new' => array
             (
-                'label'             => &$GLOBALS['TL_LANG']['tl_iso_documents']['new'],
+                'label'             => &$GLOBALS['TL_LANG']['tl_iso_document']['new'],
                 'href'              => 'act=create',
                 'class'             => 'header_new',
                 'attributes'        => 'onclick="Backend.getScrollOffset();"',
@@ -80,26 +80,26 @@ $GLOBALS['TL_DCA']['tl_iso_documents'] = array
         (
             'edit' => array
             (
-                'label'             => &$GLOBALS['TL_LANG']['tl_iso_documents']['edit'],
+                'label'             => &$GLOBALS['TL_LANG']['tl_iso_document']['edit'],
                 'href'              => 'act=edit',
                 'icon'              => 'edit.gif',
             ),
             'copy' => array
             (
-                'label'             => &$GLOBALS['TL_LANG']['tl_iso_documents']['copy'],
+                'label'             => &$GLOBALS['TL_LANG']['tl_iso_document']['copy'],
                 'href'              => 'act=copy',
                 'icon'              => 'copy.gif'
             ),
             'delete' => array
             (
-                'label'             => &$GLOBALS['TL_LANG']['tl_iso_documents']['delete'],
+                'label'             => &$GLOBALS['TL_LANG']['tl_iso_document']['delete'],
                 'href'              => 'act=delete',
                 'icon'              => 'delete.gif',
                 'attributes'        => 'onclick="if (!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\')) return false; Backend.getScrollOffset();"'
             ),
             'show' => array
             (
-                'label'             => &$GLOBALS['TL_LANG']['tl_iso_documents']['show'],
+                'label'             => &$GLOBALS['TL_LANG']['tl_iso_document']['show'],
                 'href'              => 'act=show',
                 'icon'              => 'show.gif'
             )
@@ -127,7 +127,7 @@ $GLOBALS['TL_DCA']['tl_iso_documents'] = array
         ),
         'name' => array
         (
-            'label'                 => &$GLOBALS['TL_LANG']['tl_iso_documents']['name'],
+            'label'                 => &$GLOBALS['TL_LANG']['tl_iso_document']['name'],
             'exclude'               => true,
             'inputType'             => 'text',
             'eval'                  => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
@@ -135,7 +135,7 @@ $GLOBALS['TL_DCA']['tl_iso_documents'] = array
         ),
         'class' => array
         (
-            'label'                 => &$GLOBALS['TL_LANG']['tl_iso_documents']['class'],
+            'label'                 => &$GLOBALS['TL_LANG']['tl_iso_document']['class'],
             'exclude'               => true,
             'inputType'             => 'select',
             'default'               => 'standard',

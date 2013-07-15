@@ -47,9 +47,17 @@ class Standard implements IsotopeDocument
     /**
      * {@inheritdoc}
      */
-    public function generate()
+    public function printToBrowser()
     {
-        return '';
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function store($path)
+    {
+
     }
 
     /**

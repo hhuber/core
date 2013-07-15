@@ -14,19 +14,23 @@ namespace Isotope\Interfaces;
 
 
 /**
- * Invoice templates print a collection
+ * Documents print a collection
  */
-interface IsotopeInvoiceTemplate
+interface IsotopeDocument
 {
 
     /**
-     * Generate the invoice template
-     * @return  string
+     * Generate the document and send it to browser
      */
-    public function generate();
+    public function printToBrowser();
 
     /**
-     * Return the name and description for this invoice template
+     * Generate the document and store it to a given path
+     */
+    public function store($path);
+
+    /**
+     * Return the name and description for this document
      * @return array
      */
     public static function getClassLabel();

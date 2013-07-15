@@ -129,10 +129,10 @@ $GLOBALS['ISO_MOD'] = array
     ),
     'config' => array
     (
-        'invoice_templates' => array
+        'documents' => array
         (
-            'tables'                    => array('tl_iso_invoice_templates'),
-            'icon'                        => 'system/modules/isotope/assets/invoice-templates.png'
+            'tables'                    => array('tl_iso_documents'),
+            'icon'                        => 'system/modules/isotope/assets/invoice_64x64.png'
         ),
         'iso_mail' => array
         (

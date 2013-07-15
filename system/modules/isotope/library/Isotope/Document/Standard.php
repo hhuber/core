@@ -14,6 +14,7 @@ namespace Isotope\Document;
 
 use Isotope\Interfaces\IsotopeDocument;
 use Isotope\Interfaces\IsotopeProductCollection;
+use Isotope\Model\Config;
 
 /**
  * Class Standard
@@ -33,15 +34,22 @@ class Standard implements IsotopeDocument
      */
     protected $collection = null;
 
+    /*
+     * Config
+     * @var array
+     */
+    protected $config = null;
+
 
     /**
      * Construct the object
      * @param string
      * @param array
      */
-    public function __construct(IsotopeProductCollection $collection)
+    public function __construct(IsotopeProductCollection $collection, Config $config)
     {
         $this->collection = $collection;
+        $this->config = $config;
     }
 
     /**

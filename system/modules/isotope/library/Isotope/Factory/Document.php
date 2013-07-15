@@ -26,14 +26,10 @@ class Document
      * @param string
      * @param \Isotope\Interface\IsotopeProductCollection
      * @return Isotope\Interface\IsotopeDocument
+     * @return Isotope\Model\Config
      */
-    public static function build($strClass, $objCollection)
+    public static function build($strClass, $objCollection, $objConfig)
     {
-        // Try config class if none is given
-        if ($strClass == '' || !class_exists('\Isotope\Document\\' . $strClass)) {
-            //$strClass = Isotope::getInstance()->getConfig()->gallery;
-        }
-
         // Use Standard class if no other is available
         if ($strClass == '' || !class_exists('\Isotope\Document\\' . $strClass)) {
             $strClass = 'Standard';
@@ -41,7 +37,7 @@ class Document
 
         $strClass = '\Isotope\Document\\' . $strClass;
 
-        return new $strClass($objCollection);
+        return new $strClass($objCollection, $objConfig);
     }
 
     /**

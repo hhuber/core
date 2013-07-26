@@ -92,4 +92,5 @@ TemplateLoader::addFiles(array
     'mod_iso_productlist'           => 'system/modules/isotope/templates/modules',
     'mod_iso_productlist_caching'   => 'system/modules/isotope/templates/modules',
     'mod_iso_productreader'         => 'system/modules/isotope/templates/modules',
+    'iso_document_invoice'          => 'system/modules/isotope/templates/document',
 ));

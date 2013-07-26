@@ -119,11 +119,11 @@ $GLOBALS['TL_DCA']['tl_iso_document'] = array
     (
         'id' => array
         (
-            'sql'                     => "int(10) unsigned NOT NULL auto_increment"
+            'sql'                   => "int(10) unsigned NOT NULL auto_increment"
         ),
         'tstamp' => array
         (
-            'sql'                     => "int(10) unsigned NOT NULL default '0'"
+            'sql'                   => "int(10) unsigned NOT NULL default '0'"
         ),
         'name' => array
         (
@@ -131,7 +131,7 @@ $GLOBALS['TL_DCA']['tl_iso_document'] = array
             'exclude'               => true,
             'inputType'             => 'text',
             'eval'                  => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
-            'sql'                     => "varchar(255) NOT NULL default ''"
+            'sql'                   => "varchar(255) NOT NULL default ''"
         ),
         'type' => array
         (
@@ -140,10 +140,9 @@ $GLOBALS['TL_DCA']['tl_iso_document'] = array
             'filter'                => true,
             'inputType'             => 'select',
             'default'               => 'Standard',
-            'options'               => array_keys(\Isotope\Model\Collection\Document::getClasses()),
-            //'reference'             => \Isotope\Model\Collection\Document::getClassLabels(),
-            'eval'                  => array('submitOnChange'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
-            'sql'                     => "varchar(255) NOT NULL default ''"
+            'options'               => \Isotope\Model\Document::getModelTypeOptions(),
+            'eval'                  => array('submitOnChange'=>true, 'tl_class'=>'w50'),
+            'sql'                   => "varchar(255) NOT NULL default ''"
         ),
         // invoiceLogo
     )

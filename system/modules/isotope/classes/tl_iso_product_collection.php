@@ -17,8 +17,8 @@
 namespace Isotope;
 
 use Isotope\Model\Address;
+use Isotope\Model\Document;
 use Isotope\Model\Config;
-use Isotope\Model\OrderStatus;
 use Isotope\Model\ProductCollection\Order;
 
 
@@ -308,19 +308,59 @@ class tl_iso_product_collection extends \Backend
      */
     public function printDocument(\DataContainer $dc)
     {
-        if (!$dc->id) {
-            \System::log('No order ID passed to method.', __METHOD__, TL_ERROR);
+        if (($objOrder = Order::findByPk($dc->id)) === null) {
+            \System::log(sprintf('No order ID with ID %s found.', $dc->id), __METHOD__, TL_ERROR);
             \Controller::redirect('contao/main.php?act=error');
         }
 
-        if (($objOrder = Order::findByPk($dc->id)) !== null) {
-            if (($objConfig = Config::findByPk($objOrder->config_id)) !== null) {
-                if (($objDocument = $objConfig->getRelated('invoiceDocument')) !== null) {
-                    $objDocument->setCollection($objOrder)->setConfig($objConfig)->printToBrowser();
+        if ($_POST['FORM_SUBMIT']) {
+            if (($objOrder = Order::findByPk($dc->id)) !== null) {
+                if (($objConfig = Config::findByPk($objOrder->config_id)) !== null) {
+                    if (($objDocument = Document::findByPk(\Input::post('document'))) !== null) {
+                        $objDocument->setCollection($objOrder)->setConfig($objConfig)->printToBrowser();
+                    }
                 }
             }
         }
-        exit;
+
+        $arrSelect = array
+        (
+            'name'          => 'document',
+            'label'         => &$GLOBALS['TL_LANG']['tl_iso_product_collection']['document_choice'],
+            'inputType'     => 'select',
+            'foreignKey'    => 'tl_iso_document.name',
+            'eval'          => array('mandatory'=>true)
+        );
+        $objSelect = new \SelectMenu(\SelectMenu::getAttributesFromDca($arrSelect, $arrSelect['name']));
+
+        // Return form
+        return '
+<div id="tl_buttons">
+<a href="'.ampersand(str_replace('&key=print_document', '', \Environment::get('request'))).'" class="header_back" title="'.specialchars($GLOBALS['TL_LANG']['MSC']['backBT']).'">'.$GLOBALS['TL_LANG']['MSC']['backBT'].'</a>
+</div>
+
+<h2 class="sub_headline">'.sprintf($GLOBALS['TL_LANG']['tl_iso_product_collection']['print_document'][1], $dc->id).'</h2>'.$this->getMessages().'
+
+<form action="'.ampersand(\Environment::get('request'), true).'" id="tl_iso_products_import" class="tl_form" method="post">
+<div class="tl_formbody_edit">
+<input type="hidden" name="FORM_SUBMIT" value="tl_iso_products_import">
+<input type="hidden" name="REQUEST_TOKEN" value="'.REQUEST_TOKEN.'">
+
+<div class="tl_tbox block">
+  ' . $objSelect->parse() . '
+  <p class="tl_help">'.$objSelect->description.'</p>
+</div>
+
+</div>
+
+<div class="tl_formbody_submit">
+
+<div class="tl_submit_container">
+<input type="submit" name="print" id="print" class="tl_submit" alt="" accesskey="s" value="'.specialchars($GLOBALS['TL_LANG']['tl_iso_product_collection']['print']).'">
+</div>
+
+</div>
+</form>';
     }
 
 

@@ -37,8 +37,14 @@ $GLOBALS['TL_LANG']['tl_iso_product_collection']['delete']                  = ar
 $GLOBALS['TL_LANG']['tl_iso_product_collection']['show']                    = array('Order details', 'Show details of order ID %s');
 $GLOBALS['TL_LANG']['tl_iso_product_collection']['payment']                 = array('Payment details', 'Show payment details of order ID %s');
 $GLOBALS['TL_LANG']['tl_iso_product_collection']['shipping']                = array('Shipping details', 'Show shipping details of order ID %s');
-$GLOBALS['TL_LANG']['tl_iso_product_collection']['print_document']          = array('Print order a document', 'Print order ID %s with a document of your choice');
+$GLOBALS['TL_LANG']['tl_iso_product_collection']['print_document']          = array('Print a document', 'Print order ID %s with a document of your choice');
 $GLOBALS['TL_LANG']['tl_iso_product_collection']['tools']                   = array('Tools', 'More options for order management.');
+
+/**
+ * Document choice
+ */
+$GLOBALS['TL_LANG']['tl_iso_product_collection']['document_choice']         = array('Document', 'Choose the document you would like to print the data with.');
+$GLOBALS['TL_LANG']['tl_iso_product_collection']['print']                   = 'Print';
 
 /**
  * Reference

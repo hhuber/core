@@ -456,13 +456,6 @@ $GLOBALS['TL_DCA']['tl_iso_config'] = array
             'options'               => range(1, 9),
             'eval'                  => array('tl_class'=>'w50'),
         ),
-        'invoiceLogo' => array
-        (
-            'label'                 => &$GLOBALS['TL_LANG']['tl_iso_config']['invoiceLogo'],
-            'exclude'               => true,
-            'inputType'             => 'fileTree',
-            'eval'                  => array('fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>'jpg,jpeg,gif,png,tif,tiff', 'tl_class'=>'clr'),
-        ),
         'orderstatus_new' => array
         (
             'label'                 => &$GLOBALS['TL_LANG']['tl_iso_config']['orderstatus_new'],

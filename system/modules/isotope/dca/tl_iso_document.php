@@ -109,9 +109,9 @@ $GLOBALS['TL_DCA']['tl_iso_document'] = array
     // Palettes
     'palettes' => array
     (
-        '__selector__'              => array('class'),
+        '__selector__'              => array('type'),
         'default'                   => '{name_legend},name,type',
-        'standard'                  => '{name_legend},name,type',
+        'standard'                  => '{name_legend},name,type;{config_legend},logo',
     ),
 
     // Fields
@@ -141,9 +141,16 @@ $GLOBALS['TL_DCA']['tl_iso_document'] = array
             'inputType'             => 'select',
             'default'               => 'Standard',
             'options'               => \Isotope\Model\Document::getModelTypeOptions(),
-            'eval'                  => array('submitOnChange'=>true, 'tl_class'=>'w50'),
+            'eval'                  => array('submitOnChange'=>true, 'tl_class'=>'w50', 'includeBlankOption'=>true),
             'sql'                   => "varchar(255) NOT NULL default ''"
         ),
-        // invoiceLogo
+        'logo' => array
+        (
+            'label'                 => &$GLOBALS['TL_LANG']['tl_iso_document']['logo'],
+            'exclude'               => true,
+            'inputType'             => 'fileTree',
+            'eval'                  => array('fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>'jpg,jpeg,gif,png,tif,tiff', 'tl_class'=>'clr'),
+            'sql'                   => "int(10) unsigned NOT NULL default '0'"
+        ),
     )
 );

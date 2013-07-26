@@ -54,13 +54,20 @@ abstract class Document extends TypeAgent
     protected $config = null;
 
     /**
-     * Set the collection
+     * Collection tokens
+     * @var array
+     */
+    protected $arrCollectionTokens = array();
+
+    /**
+     * Set the collection and prepare tokens
      * @param IsotopeProductCollection
      * @return Standard
      */
     public function setCollection(IsotopeProductCollection $collection)
     {
         $this->collection = $collection;
+        $this->prepareCollectionTokens();
 
         return $this;
     }
@@ -76,4 +83,15 @@ abstract class Document extends TypeAgent
 
         return $this;
     }
+
+    /**
+     * Prepares the collection tokens
+     */
+    protected function prepareCollectionTokens()
+    {
+        foreach ($this->collection->row() as $k => $v) {
+            $this->arrCollectionTokens['collection_' . $k] = $v;
+        }
+    }
+
 }

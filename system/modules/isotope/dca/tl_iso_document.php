@@ -111,7 +111,7 @@ $GLOBALS['TL_DCA']['tl_iso_document'] = array
     (
         '__selector__'              => array('type'),
         'default'                   => '{name_legend},name,type',
-        'standard'                  => '{name_legend},name,type;{config_legend},logo',
+        'standard'                  => '{name_legend},name,type;{config_legend},logo,fileTitle',
     ),
 
     // Fields
@@ -151,6 +151,14 @@ $GLOBALS['TL_DCA']['tl_iso_document'] = array
             'inputType'             => 'fileTree',
             'eval'                  => array('fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>'jpg,jpeg,gif,png,tif,tiff', 'tl_class'=>'clr'),
             'sql'                   => "int(10) unsigned NOT NULL default '0'"
+        ),
+        'fileTitle' => array
+        (
+            'label'                 => &$GLOBALS['TL_LANG']['tl_iso_document']['fileTitle'],
+            'exclude'               => true,
+            'inputType'             => 'text',
+            'eval'                  => array('mandatory'=>true, 'decodeEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
+            'sql'                   => "varchar(255) NOT NULL default ''"
         ),
     )
 );

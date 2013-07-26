@@ -35,11 +35,7 @@ class Standard extends Document implements IsotopeDocument
     public function printToBrowser()
     {
         $pdf = $this->generatePDF();
-/*
-        $strInvoiceTitle = 'invoice_' . $objOrder->order_id;
-        $pdf->Output(standardize(ampersand($strInvoiceTitle, false), true) . '.pdf', 'D');
-*/
-        exit;
+        $pdf->Output(sprintf('%s.pdf', $this->generateFileName()), 'D');
     }
 
     /**
@@ -48,12 +44,20 @@ class Standard extends Document implements IsotopeDocument
     public function store($path)
     {
         $pdf = $this->generatePDF();
-        $pdf->Output(standardize(ampersand($strInvoiceTitle, false), true) . '.pdf', 'D');
+        $pdf->Output(sprintf(TL_ROOT . '/%s/%s.pdf', $path, $this->generateFileName()), 'F');
+    }
+
+    /**
+     *
+     */
+    protected function generateFileName()
+    {
+        return \String::parseSimpleTokens($this->fileTitle, $this->arrCollectionTokens);
     }
 
     /**
      * Generate the pdf document
-     * @return
+     * @return \TCPDF
      */
     protected function generatePDF()
     {

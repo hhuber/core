@@ -9,13 +9,6 @@
 
                 <h2><?php echo $this->invoiceTitle; ?></h2>
 
-                <?php foreach( $this->info as $type => $data ): ?>
-                <div class="info_container <?php echo $type . $data['class']; ?>">
-                    <h3><?php echo $data['headline']; ?></h3>
-                    <div class="info"><?php echo $data['info']; ?></div>
-                </div>
-                <?php endforeach; ?>
-
                 <table cellspacing="0" cellpadding="5" width="100%" style="margin-left:25px; margin-right:25px">
                     <?php foreach( $this->items as $item ): ?>
                     <tr>

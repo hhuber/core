@@ -37,26 +37,26 @@ array_insert($GLOBALS['BE_MOD']['isotope'], 0, array
     'iso_products' => array
     (
         'tables'                    => array('tl_iso_products', 'tl_iso_groups', 'tl_iso_product_categories', 'tl_iso_downloads', 'tl_iso_related_products', 'tl_iso_prices', 'tl_iso_price_tiers'),
-        'icon'                        => 'system/modules/isotope/assets/store-open.png',
+        'icon'                      => 'system/modules/isotope/assets/store-open.png',
         'javascript'                => 'system/modules/isotope/assets/backend.min.js',
-        'generate'                    => array('Isotope\tl_iso_products', 'generateVariants'),
+        'generate'                  => array('Isotope\tl_iso_products', 'generateVariants'),
         'quick_edit'                => array('Isotope\tl_iso_products', 'quickEditVariants'),
         'import'                    => array('Isotope\tl_iso_products', 'importAssets'),
     ),
     'iso_orders' => array
     (
         'tables'                    => array('tl_iso_product_collection', 'tl_iso_product_collection_item', 'tl_iso_product_collection_surcharge', 'tl_iso_product_collection_download', 'tl_iso_addresses'),
-        'icon'                        => 'system/modules/isotope/assets/shopping-basket.png',
+        'icon'                      => 'system/modules/isotope/assets/shopping-basket.png',
         'javascript'                => 'system/modules/isotope/assets/backend.min.js',
-        'print_order'                => array('Isotope\tl_iso_product_collection', 'printInvoice'),
-        'payment'                    => array('Isotope\tl_iso_product_collection', 'paymentInterface'),
-        'shipping'                    => array('Isotope\tl_iso_product_collection', 'shippingInterface'),
+        'print_document'            => array('Isotope\tl_iso_product_collection', 'printDocument'),
+        'payment'                   => array('Isotope\tl_iso_product_collection', 'paymentInterface'),
+        'shipping'                  => array('Isotope\tl_iso_product_collection', 'shippingInterface'),
     ),
     'iso_setup' => array
     (
-        'callback'                    => 'Isotope\BackendModule\Setup',
+        'callback'                  => 'Isotope\BackendModule\Setup',
         'tables'                    => array(),
-        'icon'                        => 'system/modules/isotope/assets/application-monitor.png',
+        'icon'                      => 'system/modules/isotope/assets/application-monitor.png',
         'javascript'                => 'system/modules/isotope/assets/backend.min.js',
     ),
 ));

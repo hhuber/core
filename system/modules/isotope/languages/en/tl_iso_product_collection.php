@@ -37,10 +37,8 @@ $GLOBALS['TL_LANG']['tl_iso_product_collection']['delete']                  = ar
 $GLOBALS['TL_LANG']['tl_iso_product_collection']['show']                    = array('Order details', 'Show details of order ID %s');
 $GLOBALS['TL_LANG']['tl_iso_product_collection']['payment']                 = array('Payment details', 'Show payment details of order ID %s');
 $GLOBALS['TL_LANG']['tl_iso_product_collection']['shipping']                = array('Shipping details', 'Show shipping details of order ID %s');
-$GLOBALS['TL_LANG']['tl_iso_product_collection']['print_order']             = array('Print this order', 'Print an invoice for the current order');
+$GLOBALS['TL_LANG']['tl_iso_product_collection']['print_document']          = array('Print order a document', 'Print order ID %s with a document of your choice');
 $GLOBALS['TL_LANG']['tl_iso_product_collection']['tools']                   = array('Tools', 'More options for order management.');
-$GLOBALS['TL_LANG']['tl_iso_product_collection']['export_emails']           = array('Export Order Emails','Export all emails for those who have ordered.');
-$GLOBALS['TL_LANG']['tl_iso_product_collection']['print_invoices']          = array('Print Invoices','Print one or more invoices into a single document of a certain order status.');
 
 /**
  * Reference

@@ -306,7 +306,7 @@ class tl_iso_product_collection extends \Backend
      * Pass an order to the document
      * @param DataContainer
      */
-    public function printInvoice(\DataContainer $dc)
+    public function printDocument(\DataContainer $dc)
     {
         if (!$dc->id) {
             \System::log('No order ID passed to method.', __METHOD__, TL_ERROR);

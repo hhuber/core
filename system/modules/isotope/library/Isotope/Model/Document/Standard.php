@@ -15,6 +15,7 @@ namespace Isotope\Model\Document;
 use Isotope\Interfaces\IsotopeDocument;
 use Isotope\Interfaces\IsotopeProductCollection;
 use Isotope\Model\Config;
+use Isotope\Model\Document;
 
 /**
  * Class Standard
@@ -26,50 +27,14 @@ use Isotope\Model\Config;
  * @author     Christian de la Haye <service@delahaye.de>
  * @author     Yanick Witschi <yanick.witschi@terminal42.ch>
  */
-class Standard implements IsotopeDocument
+class Standard extends Document implements IsotopeDocument
 {
-    /*
-     * Collection
-     * @var array
-     */
-    protected $collection = null;
-
-    /*
-     * Config
-     * @var array
-     */
-    protected $config = null;
-
-
-    /**
-     * Set the collection
-     * @param IsotopeProductCollection
-     * @return Standard
-     */
-    public function setCollection(IsotopeProductCollection $collection)
-    {
-        $this->collection = $collection;
-
-        return $this;
-    }
-
-    /**
-     * Set the store config
-     * @param Config
-     * @return Standard
-     */
-    public function setConfig(Config $config)
-    {
-        $this->config = $config;
-
-        return $this;
-    }
-
     /**
      * {@inheritdoc}
      */
     public function printToBrowser()
     {
+        $pdf = $this->generatePDF();
 /*
         $strInvoiceTitle = 'invoice_' . $objOrder->order_id;
         $pdf->Output(standardize(ampersand($strInvoiceTitle, false), true) . '.pdf', 'D');
@@ -82,6 +47,74 @@ class Standard implements IsotopeDocument
      */
     public function store($path)
     {
+        $pdf = $this->generatePDF();
+        $pdf->Output(standardize(ampersand($strInvoiceTitle, false), true) . '.pdf', 'D');
+    }
 
+    /**
+     * Generate the pdf document
+     * @return
+     */
+    protected function generatePDF()
+    {
+        // TCPDF configuration
+        $l = array();
+        $l['a_meta_dir'] = 'ltr';
+        $l['a_meta_charset'] = $GLOBALS['TL_CONFIG']['characterSet'];
+        $l['a_meta_language'] = $GLOBALS['TL_LANGUAGE'];
+        $l['w_page'] = 'page';
+
+        // Include library
+        require_once TL_ROOT . '/system/config/tcpdf.php';
+        require_once TL_ROOT . '/system/modules/core/vendor/tcpdf/tcpdf.php';
+
+        // Create new PDF document
+        $pdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true);
+
+        // Set document information
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor(PDF_AUTHOR);
+
+        // Prevent font subsetting (huge speed improvement)
+        $pdf->setFontSubsetting(false);
+
+        // Remove default header/footer
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+
+        // Set margins
+        $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+
+        // Set auto page breaks
+        $pdf->SetAutoPageBreak(true, PDF_MARGIN_BOTTOM);
+
+        // Set image scale factor
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+        // Set some language-dependent strings
+        $pdf->setLanguageArray($l);
+
+        // Initialize document and add a page
+        $pdf->AddPage();
+
+        // Set font
+        $pdf->SetFont(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN);
+
+        // Start new page
+        $pdf->AddPage();
+
+        // Write the HTML content
+        $objTemplate = new \FrontendTemplate('iso_document_invoice');
+        $this->collection->addToTemplate($objTemplate);
+
+        var_dump($objTemplate->parse());
+
+        exit;
+
+        $pdf->writeHTML($x, true, 0, true, 0);
+
+        $pdf->lastPage();
+
+        return $pdf;
     }
 }

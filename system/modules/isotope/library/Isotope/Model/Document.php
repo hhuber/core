@@ -11,6 +11,7 @@
  */
 
 namespace Isotope\Model;
+use Isotope\Interfaces\IsotopeProductCollection;
 
 /**
  * Class Document
@@ -39,4 +40,40 @@ abstract class Document extends TypeAgent
      * @var array
      */
     protected static $arrModelTypes = array();
+
+    /*
+    * Collection
+    * @var array
+    */
+    protected $collection = null;
+
+    /*
+     * Config
+     * @var array
+     */
+    protected $config = null;
+
+    /**
+     * Set the collection
+     * @param IsotopeProductCollection
+     * @return Standard
+     */
+    public function setCollection(IsotopeProductCollection $collection)
+    {
+        $this->collection = $collection;
+
+        return $this;
+    }
+
+    /**
+     * Set the store config
+     * @param Config
+     * @return Standard
+     */
+    public function setConfig(Config $config)
+    {
+        $this->config = $config;
+
+        return $this;
+    }
 }

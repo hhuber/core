@@ -110,8 +110,8 @@ $GLOBALS['TL_DCA']['tl_iso_document'] = array
     'palettes' => array
     (
         '__selector__'              => array('type'),
-        'default'                   => '{name_legend},name,type',
-        'standard'                  => '{name_legend},name,type;{config_legend},logo,fileTitle;{template_legend},template',
+        'default'                   => '{type_legend},name,type',
+        'standard'                  => '{type_legend},name,type;{config_legend},logo,fileTitle;{template_legend},template',
     ),
 
     // Fields

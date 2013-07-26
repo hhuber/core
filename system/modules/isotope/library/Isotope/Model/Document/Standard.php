@@ -105,7 +105,7 @@ class Standard extends Document implements IsotopeDocument
         $pdf->SetFont(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN);
 
         // Prepare the template
-        $objTemplate = new \FrontendTemplate('iso_document_invoice');
+        $objTemplate = new \FrontendTemplate($this->template);
         $this->collection->addToTemplate($objTemplate);
 
         // add invoice logo

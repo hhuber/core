@@ -104,18 +104,18 @@ class Standard extends Document implements IsotopeDocument
         // Set font
         $pdf->SetFont(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN);
 
-        // Start new page
-        $pdf->AddPage();
-
-        // Write the HTML content
+        // Prepare the template
         $objTemplate = new \FrontendTemplate('iso_document_invoice');
         $this->collection->addToTemplate($objTemplate);
 
-        var_dump($objTemplate->parse());
+        // add invoice logo
+        if ($this->logo && ($objFilesModel = \FilesModel::findByPk($this->logo)) !== null) {
+            $objTemplate->hasLogo = true;
+            $objTemplate->logoSrc = TL_ROOT . '/' . $objFilesModel->path;
+        }
 
-        exit;
-
-        $pdf->writeHTML($x, true, 0, true, 0);
+        // Write the HTML content
+        $pdf->writeHTML($objTemplate->parse(), true, 0, true, 0);
 
         $pdf->lastPage();
 

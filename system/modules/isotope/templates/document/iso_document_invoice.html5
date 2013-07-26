@@ -2,8 +2,9 @@
     <table cellspacing="0" cellpadding="20" border="1">
         <tr>
             <td>
-
-                <?php echo $this->logoImage; ?>
+                <?php if ($this->hasLogo): ?>
+                <img src="<?php echo $this->logoSrc; ?>" alt="" />
+                <?php endif; ?>
                 <br><br>
 
                 <h2><?php echo $this->invoiceTitle; ?></h2>
@@ -58,4 +59,3 @@
         </tr>
     </table>
 </div>
-<?php print_r($this); ?>

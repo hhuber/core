@@ -130,7 +130,7 @@ $GLOBALS['ISO_MOD'] = array
         'documents' => array
         (
             'tables'                    => array('tl_iso_document'),
-            'icon'                        => 'system/modules/isotope/assets/invoice_64x64.png'
+            'icon'                        => 'system/modules/isotope/assets/setup-documents.png'
         ),
         'iso_mail' => array
         (
@@ -222,6 +222,11 @@ $GLOBALS['BE_FFL']['productGroupSelector']   = 'Isotope\Widget\ProductGroupSelec
 \Isotope\Model\Gallery::registerModelType('standard', 'Isotope\Model\Gallery\Standard');
 \Isotope\Model\Gallery::registerModelType('inline', 'Isotope\Model\Gallery\Inline');
 \Isotope\Model\Gallery::registerModelType('zoom', 'Isotope\Model\Gallery\Zoom');
+
+/**
+ * Documents
+ */
+\Isotope\Model\Document::registerModelType('standard', 'Isotope\Model\Document\Standard');
 
 /**
  * Products
